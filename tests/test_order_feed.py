@@ -8,6 +8,7 @@ from data import INGREDIENT_NAME, INGREDIENT_NAME_FILLING
 @allure.feature("Лента заказов")
 class TestOrderFeed:
 
+    @allure.title("Счётчик 'Выполнено за всё время' увеличивается после создания заказа")
     @allure.story("Счётчик 'Выполнено за всё время' увеличивается после создания заказа")
     def test_total_counter_increases(self, logged_in_browser):
         driver = logged_in_browser
@@ -36,6 +37,7 @@ class TestOrderFeed:
         new_total = feed.get_total_counter_value()
         assert new_total > initial_total, "Счётчик не увеличился"
 
+    @allure.title("Счётчик 'Выполнено за сегодня' увеличивается после создания заказа")
     @allure.story("Счётчик 'Выполнено за сегодня' увеличивается после создания заказа")
     def test_today_counter_increases(self, logged_in_browser):
         driver = logged_in_browser
@@ -55,6 +57,7 @@ class TestOrderFeed:
         new_today = feed.get_today_counter_value()
         assert new_today > initial_today, "Счётчик 'Выполнено за сегодня' не увеличился"
 
+    @allure.title("Номер созданного заказа отображается в разделе 'В работе'")
     @allure.story("Номер заказа появляется в разделе 'В работе'")
     def test_order_number_in_progress(self, logged_in_browser):
         driver = logged_in_browser

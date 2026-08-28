@@ -52,7 +52,9 @@ def browser(request):
         options = FirefoxOptions()
         options.add_argument("--width=1920")
         options.add_argument("--height=1080")
-        service = FirefoxService(GeckoDriverManager().install())
+        gecko_path = r"C:\Users\Софья\.wdm\drivers\geckodriver\win64\v0.37.1\geckodriver.exe"
+        service = FirefoxService(executable_path=gecko_path)
+        #service = FirefoxService(GeckoDriverManager().install())
         driver = webdriver.Firefox(service=service, options=options)
     else:
         raise ValueError("Unsupported browser")
