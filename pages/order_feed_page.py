@@ -26,9 +26,7 @@ class OrderFeedPage(BasePage):
                 return current > initial_value
             except:
                 return False
-        from selenium.webdriver.support.ui import WebDriverWait
-        wait = WebDriverWait(self.driver, timeout)
-        wait.until(counter_changed, message="Счётчик 'Выполнено за всё время' не увеличился")
+        self.wait_until(counter_changed, timeout=timeout, message="Счётчик 'Выполнено за всё время' не увеличился")
 
     @allure.step("Ожидание увеличения счётчика 'Выполнено за сегодня' (было {initial_value})")
     def wait_for_today_counter_increase(self, initial_value, timeout=10):
@@ -38,15 +36,11 @@ class OrderFeedPage(BasePage):
                 return current > initial_value
             except:
                 return False
-        from selenium.webdriver.support.ui import WebDriverWait
-        wait = WebDriverWait(self.driver, timeout)
-        wait.until(counter_changed, message="Счётчик 'Выполнено за сегодня' не увеличился")
+        self.wait_until(counter_changed, timeout=timeout, message="Счётчик 'Выполнено за сегодня' не увеличился")
 
     @allure.step("Ожидание появления заказа {order_number} в разделе 'В работе'")
     def wait_for_order_in_progress(self, order_number, timeout=20):
         def order_appeared(driver):
             orders = self.get_orders_in_progress()
             return order_number in orders
-        from selenium.webdriver.support.ui import WebDriverWait
-        wait = WebDriverWait(self.driver, timeout)
-        wait.until(order_appeared, message=f"Заказ {order_number} не появился в разделе 'В работе'")
+        self.wait_until(order_appeared, timeout=timeout, message=f"Заказ {order_number} не появился в разделе 'В работе'")

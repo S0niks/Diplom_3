@@ -37,3 +37,9 @@ class BasePage:
     def execute_script(self, script, *args):
         """Выполняет JavaScript на странице."""
         return self.driver.execute_script(script, *args)
+
+    @allure.step("Ожидание выполнения условия")
+    def wait_until(self, condition, timeout=10, message=""):
+        """Ожидает, пока condition вернёт True (для кастомных ожиданий)"""
+        wait = WebDriverWait(self.driver, timeout)
+        return wait.until(condition, message=message)

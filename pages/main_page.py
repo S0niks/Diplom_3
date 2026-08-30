@@ -86,6 +86,4 @@ class MainPage(BasePage):
                 return current > initial_value
             except:
                 return False
-        from selenium.webdriver.support.ui import WebDriverWait
-        wait = WebDriverWait(self.driver, timeout)
-        wait.until(counter_changed, message=f"Счётчик для {name} не увеличился")
+        self.wait_until(counter_changed, timeout=timeout, message=f"Счётчик для {name} не увеличился")

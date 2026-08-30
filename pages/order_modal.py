@@ -11,7 +11,7 @@ class OrderModal(BasePage):
     @allure.step("Закрытие модального окна заказа")
     def close_modal(self):
         element = self.find_element(OrderModalLocators.CLOSE_BUTTON)
-        self.driver.execute_script("arguments[0].click();", element)
+        self.execute_script("arguments[0].click();", element)
 
     @allure.step("Ожидание появления модального окна с номером заказа")
     def wait_for_order_modal(self, timeout=10):
