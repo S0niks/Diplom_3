@@ -17,3 +17,7 @@ class IngredientModal(BasePage):
     @allure.step("Получение названия ингредиента из модального окна")
     def get_ingredient_name(self):
         return self.get_text(IngredientModalLocators.INGREDIENT_NAME)
+
+    @allure.step("Ожидание закрытия модального окна ингредиента")
+    def wait_until_closed(self, timeout=10):
+        self.wait_for_element_invisible(IngredientModalLocators.MODAL_ROOT)

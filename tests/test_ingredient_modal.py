@@ -1,6 +1,5 @@
 import allure
 import pytest
-from selenium.webdriver.common.by import By
 from data import INGREDIENT_NAME
 
 @allure.feature("Ингредиенты")
@@ -19,7 +18,5 @@ class TestIngredientModal:
         main_page.click_ingredient(INGREDIENT_NAME)
         assert ingredient_modal.is_modal_displayed()
         ingredient_modal.close_modal()
-        ingredient_modal.wait_for_element_invisible(
-            (By.XPATH, "//div[contains(@class,'Modal_modal__content')]")
-        )
+        ingredient_modal.wait_until_closed()
         assert not ingredient_modal.is_modal_displayed(), "Модальное окно не закрылось"
